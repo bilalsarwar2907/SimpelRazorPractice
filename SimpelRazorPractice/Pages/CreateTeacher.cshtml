@@ -1,0 +1,88 @@
+﻿@page
+@model SimpelRazorPractice.Pages.CreateTeacherModel
+
+<!--
+    MAIN PAGE CONTAINER
+    - Gives consistent spacing and centers content
+-->
+<div class="container mt-4">
+
+    <!-- PAGE TITLE -->
+    <h1 class="mb-4">Create Teacher</h1>
+
+    <!-- ========================================================= -->
+    <!-- EXISTING TEACHERS LIST (Styled as a Bootstrap card)       -->
+    <!-- ========================================================= -->
+    @if (Model.Teachers.Any())
+    {
+        <!--
+            Card wrapper for existing teachers
+            - shadow-sm adds a soft shadow
+            - mb-4 adds spacing below the card
+        -->
+        <div class="card shadow-sm mb-4">
+
+            <!-- Card header with background color -->
+            <div class="card-header bg-dark text-white">
+                Existing Teachers
+            </div>
+
+            <!-- List group for clean, consistent list styling -->
+            <ul class="list-group list-group-flush">
+                @foreach (var teacher in Model.Teachers)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                        <!-- Teacher info -->
+                        <div>
+                            <strong>@teacher.TeacherName</strong><br />
+                            <small>ID: @teacher.TeacherId</small>
+                        </div>
+
+                        <!-- Placeholder for future actions (Edit/Delete) -->
+                        <div class="text-muted small">
+                            <!-- You can add buttons here later -->
+                        </div>
+
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
+    <!-- ========================================================= -->
+    <!-- CREATE TEACHER FORM (Styled card)                         -->
+    <!-- ========================================================= -->
+    <div class="card shadow-sm p-4">
+
+        <!-- Card title -->
+        <h4 class="mb-3">Add a New Teacher</h4>
+
+        <!--
+            The form posts back to the same page.
+            - method="post" triggers OnPost()
+            - mt-4 adds spacing above the form
+        -->
+        <form method="post" class="mt-2">
+
+            <!-- Teacher Name Input -->
+            <div class="mb-3">
+                <!-- Label automatically uses property name -->
+                <label asp-for="Teacher.TeacherName" class="form-label"></label>
+
+                <!-- Input field styled with Bootstrap -->
+                <input asp-for="Teacher.TeacherName" class="form-control" />
+
+                <!-- Validation message -->
+                <span asp-validation-for="Teacher.TeacherName" class="text-danger"></span>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary w-100">
+                Create
+            </button>
+
+        </form>
+    </div>
+
+</div> <!-- END CONTAINER -->

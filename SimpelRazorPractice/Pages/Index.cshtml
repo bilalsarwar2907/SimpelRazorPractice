@@ -1,0 +1,123 @@
+﻿@page
+@using SimpelRazorPractice.Helpers
+@using SimpelRazorPractice.Models
+
+@model IndexModel
+
+<!-- MAIN PAGE CONTAINER -->
+<div class="container mt-4">
+
+    <!-- PAGE TITLES -->
+    <h1 class="mb-3">Student Enrollment</h1>
+    <h2 class="text-muted">Student Name, Teachers, and Courses</h2>
+
+    <!-- DATE SECTION -->
+    <p class="mt-2">
+        <!-- Shows today's date -->
+        <strong>Date:</strong> @DateHelper.Today()
+    </p>
+
+    <!-- ========================================= -->
+    <!-- STUDENTS SECTION                          -->
+    <!-- ========================================= -->
+    <h3 class="mt-4">All Students</h3>
+
+    <!--
+        ADDED: Row + columns so students, courses, teachers
+        appear side-by-side instead of stacked vertically.
+        This makes the page feel organized and modern.
+    -->
+    <div class="row mt-3">
+
+        <!-- STUDENTS COLUMN -->
+        <div class="col-md-4">
+            <!-- Card wrapper for students -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <!-- Card title -->
+                    Students
+                </div>
+
+                <!-- List of students -->
+                <ul class="list-group list-group-flush">
+                    @foreach (var student in Model.Students)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                            <!-- Student info -->
+                            <div>
+                                <strong>@student.StudentName</strong><br />
+                                <small>ID: @student.StudentId — Age: @student.StudentAge - Email :@student.StudentEmail</small>
+                            </div>
+
+                            <!-- Action buttons grouped together -->
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-warning"
+                                   asp-page="/StudentPages/EditStudent"
+                                   asp-route-s="@student.StudentId">
+                                    Edit
+                                </a>
+
+                                <a class="btn btn-sm btn-danger"
+                                   asp-page="/StudentPages/DeleteStudent"
+                                   asp-route-studentId="@student.StudentId">
+                                    Delete
+                                </a>
+
+                                <a class="btn btn-sm btn-info"
+                                   asp-page="/StudentPages/StudentIndex"
+                                   asp-route-StudentId="@student.StudentId">
+                                    Details
+                                </a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- COURSES COLUMN                            -->
+        <!-- ========================================= -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    Courses
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    @foreach (var course in Model.Courses)
+                    {
+                        <li class="list-group-item">
+                            <strong>@course.CourseTitle</strong><br />
+                            <small>ID: @course.CourseId</small>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <!-- ========================================= -->
+        <!-- TEACHERS COLUMN                           -->
+        <!-- ========================================= -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white">
+                    Teachers
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    @foreach (var teacher in Model.Teachers)
+                    {
+                        <li class="list-group-item">
+                            <strong>@teacher.TeacherName</strong><br />
+                            <small>ID: @teacher.TeacherId</small>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+    </div> <!-- END ROW -->
+
+</div> <!-- END CONTAINER -->

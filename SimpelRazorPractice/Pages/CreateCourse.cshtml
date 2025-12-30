@@ -1,0 +1,88 @@
+﻿@page
+@model SimpelRazorPractice.Pages.CreateCourseModel
+
+<!--
+    MAIN PAGE CONTAINER
+    - Provides consistent spacing and centers content
+-->
+<div class="container mt-4">
+
+    <!-- PAGE TITLE -->
+    <h1 class="mb-4">Create Course</h1>
+
+    <!-- ========================================================= -->
+    <!-- EXISTING COURSES LIST (Styled as a Bootstrap card)        -->
+    <!-- ========================================================= -->
+    @if (Model.Courses.Any())
+    {
+        <!-- Section heading -->
+        <h3 class="mt-4">Available Courses</h3>
+
+        <!--
+            Card wrapper for existing courses
+            - shadow-sm adds a soft shadow
+            - mb-4 adds spacing below the card
+        -->
+        <div class="card shadow-sm p-3 mb-4">
+
+            <!-- Loop through all courses -->
+            @foreach (var course in Model.Courses)
+            {
+                <!--
+                    Each course displayed as a list item
+                    - d-flex aligns content horizontally
+                    - justify-content-between spreads content
+                -->
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <!-- Course info -->
+                    <div>
+                        <strong>@course.CourseTitle</strong><br />
+                        <small>ID: @course.CourseId</small>
+                    </div>
+
+                    <!-- Placeholder for future actions (Edit/Delete) -->
+                    <div class="text-muted small">
+                        <!-- You can add buttons here later -->
+                    </div>
+
+                </div>
+            }
+        </div>
+    }
+
+    <!-- ========================================================= -->
+    <!-- CREATE COURSE FORM (Styled card)                          -->
+    <!-- ========================================================= -->
+    <div class="card shadow-sm p-4">
+
+        <!-- Card title -->
+        <h4 class="mb-3">Add a New Course</h4>
+
+        <!--
+            The form posts back to the same page.
+            - method="post" triggers OnPost()
+        -->
+        <form method="post" class="mt-2">
+
+            <!-- Course Title Input -->
+            <div class="mb-3">
+                <!-- Label automatically uses property name -->
+                <label asp-for="Course.CourseTitle" class="form-label"></label>
+
+                <!-- Input field styled with Bootstrap -->
+                <input asp-for="Course.CourseTitle" class="form-control" />
+
+                <!-- Validation message -->
+                <span asp-validation-for="Course.CourseTitle" class="text-danger"></span>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary w-100">
+                Create
+            </button>
+
+        </form>
+    </div>
+
+</div> <!-- END CONTAINER -->

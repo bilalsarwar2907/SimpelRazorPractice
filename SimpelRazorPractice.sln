@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpelRazorPractice", "SimpelRazorPractice\SimpelRazorPractice.csproj", "{D416AC33-94EF-4E9A-89CC-B4334EF54533}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D416AC33-94EF-4E9A-89CC-B4334EF54533}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D416AC33-94EF-4E9A-89CC-B4334EF54533}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D416AC33-94EF-4E9A-89CC-B4334EF54533}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D416AC33-94EF-4E9A-89CC-B4334EF54533}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09BF97D5-98FF-4CA1-8A91-530FBE042636}
+	EndGlobalSection
+EndGlobal

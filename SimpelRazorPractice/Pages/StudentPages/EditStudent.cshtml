@@ -1,0 +1,62 @@
+﻿@page
+@model SimpelRazorPractice.Pages.StudentPages.EditStudentModel
+
+<!--
+    MAIN PAGE CONTAINER
+    - Provides consistent spacing and centers content
+-->
+<div class="container mt-4">
+
+    <!-- PAGE TITLE -->
+    <h1 class="mb-4">Edit Student</h1>
+
+    <!-- ========================================================= -->
+    <!-- EDIT STUDENT FORM (Styled as a Bootstrap card)            -->
+    <!-- ========================================================= -->
+    <div class="card shadow-sm p-4">
+
+        <!-- Card title -->
+        <h4 class="mb-3">Update Student Information</h4>
+
+        <!--
+            The form posts back to the same page.
+            - asp-page-handler="UpdateStudent" triggers OnPostUpdateStudent()
+        -->
+        <form method="post" asp-page-handler="UpdateStudent" class="mt-2">
+
+            <!--
+                Hidden field for StudentId
+                - Required so the correct student is updated
+            -->
+            <input type="hidden" asp-for="StudentId" />
+
+            <!-- Student Name Input -->
+            <div class="mb-3">
+                <!-- Label automatically uses property name -->
+                <label asp-for="Student.StudentName" class="form-label"></label>
+
+                <!-- Input field styled with Bootstrap -->
+                <input asp-for="Student.StudentName" class="form-control" />
+
+                <!-- Validation message -->
+                <span asp-validation-for="Student.StudentName" class="text-danger"></span>
+            </div>
+
+            <!-- Student Age Input -->
+            <div class="mb-3">
+                <label asp-for="Student.StudentAge" class="form-label"></label>
+
+                <input asp-for="Student.StudentAge" class="form-control" />
+
+                <span asp-validation-for="Student.StudentAge" class="text-danger"></span>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary w-100">
+                Update Student
+            </button>
+
+        </form>
+    </div>
+
+</div> <!-- END CONTAINER -->

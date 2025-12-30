@@ -1,0 +1,63 @@
+﻿@page
+@model SimpelRazorPractice.Pages.StudentPages.StudentIndexModel
+
+<!--
+    MAIN PAGE CONTAINER
+    - Provides consistent spacing and centers content
+-->
+<div class="container mt-4">
+
+    <!-- PAGE TITLE -->
+    <h1 class="mb-4">Student Details</h1>
+
+    @if (Model.Student != null)
+    {
+        <!--
+            Card wrapper for student details
+            - shadow-sm adds a soft shadow
+            - p-4 adds padding
+            - mt-4 adds spacing above
+        -->
+        <div class="card shadow-sm p-4 mt-4">
+
+            <!-- Student Name as main heading -->
+            <h3 class="mb-3">@Model.Student.StudentName</h3>
+
+            <!--
+                Two-column layout for details
+                - row creates horizontal layout
+                - col-md-6 splits into two equal columns on medium+ screens
+            -->
+            <div class="row">
+
+                <!-- LEFT COLUMN -->
+                <div class="col-md-6 mb-3">
+                    <p class="mb-1"><strong>ID:</strong> @Model.Student.StudentId</p>
+                    <p class="mb-1"><strong>Age:</strong> @Model.Student.StudentAge</p>
+                    <p class="mb-1"><strong>Age:</strong> @Model.Student.StudentEmail</p>
+                </div>
+
+                <!-- RIGHT COLUMN (reserved for future data like courses/teachers) -->
+                <div class="col-md-6 mb-3">
+                    <!-- Placeholder for future expansion -->
+                    <p class="text-muted"><em>More details coming soon...</em></p>
+                </div>
+
+            </div>
+
+            <!-- Back button -->
+            <a asp-page="/Index" class="btn btn-secondary mt-3">
+                Back to List
+            </a>
+
+        </div>
+    }
+    else
+    {
+        <!-- Error message if student not found -->
+        <div class="alert alert-danger mt-4">
+            Student not found.
+        </div>
+    }
+
+</div> <!-- END CONTAINER -->

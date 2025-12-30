@@ -1,0 +1,129 @@
+﻿@page
+@model SimpelRazorPractice.Pages.StudentPages.CreateStudentModel
+
+<!--
+    MAIN PAGE CONTAINER
+    - Provides consistent spacing and centers content
+-->
+<div class="container mt-4">
+
+    <!-- PAGE TITLE -->
+    <h1 class="mb-4">Create Student</h1>
+
+    <!-- ========================================================= -->
+    <!-- EXISTING STUDENTS LIST (Styled as a Bootstrap card)       -->
+    <!-- ========================================================= -->
+    @if (Model.Students.Any())
+    {
+        <!-- Section heading -->
+        <h3 class="mt-4">Existing Students</h3>
+
+        <!-- Card wrapper for existing students -->
+        <div class="card shadow-sm p-3 mb-4">
+
+            <!-- Loop through all students -->
+            @foreach (var student in Model.Students)
+            {
+                <!-- Each student displayed as a list item -->
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+
+                    <!-- Student info -->
+                    <div>
+                        <strong>@student.StudentName</strong><br />
+                        <small>ID: @student.StudentId — Age: @student.StudentAge :@student.StudentEmail</small>
+                    </div>
+
+                    <!-- Placeholder for future actions -->
+                    <div class="text-muted small">
+                        <!-- Edit/Delete buttons can be added later -->
+                    </div>
+
+                </div>
+            }
+        </div>
+    }
+
+    <!-- ========================================================= -->
+    <!-- CREATE STUDENT FORM (Styled card)                         -->
+    <!-- ========================================================= -->
+    <div class="card shadow-sm p-4">
+
+        <!-- Card title -->
+        <h4 class="mb-3">Add a New Student</h4>
+
+        <!--
+            The form posts back to the same page.
+            - asp-page-handler="Create" triggers OnPostCreate()
+        -->
+        <form method="post" asp-page-handler="Create" class="mt-2">
+
+            <!-- Student Name Input -->
+            <div class="mb-3">
+                <label asp-for="Student.StudentName" class="form-label"></label>
+                <input asp-for="Student.StudentName" class="form-control" />
+                <span asp-validation-for="Student.StudentName" class="text-danger"></span>
+            </div>
+
+            <!-- Student Age Input -->
+            <div class="mb-3">
+                <label asp-for="Student.StudentAge" class="form-label"></label>
+                <input asp-for="Student.StudentAge" class="form-control" />
+                <span asp-validation-for="Student.StudentAge" class="text-danger"></span>
+            </div>
+            <!-- Student Email Input -->
+            <div class="mb-3">
+                <label asp-for="Student.StudentEmail" class="form-label"></label>
+                <input asp-for="Student.StudentEmail" class="form-control" />
+                <span asp-validation-for="Student.StudentEmail" class="text-danger"></span>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary w-100">
+                Create
+            </button>
+
+        </form>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- FIND STUDENT BY ID FORM (Styled card)                     -->
+    <!-- ========================================================= -->
+    <div class="card shadow-sm p-4 mt-4">
+
+        <!-- Card title -->
+        <h4 class="mb-3">Find Student by ID</h4>
+
+        <!--
+            The form posts back to the same page.
+            - asp-page-handler="FindStudent" triggers OnPostFindStudent()
+        -->
+        <form method="post" asp-page-handler="FindStudent">
+
+            <!-- StudentId Input -->
+            <div class="mb-3">
+                <label asp-for="StudentId" class="form-label"></label>
+                <input asp-for="StudentId" class="form-control" />
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-secondary w-100">
+                Find Student by ID
+            </button>
+
+        </form>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- FOUND STUDENT RESULT (Styled alert)                       -->
+    <!-- ========================================================= -->
+    @if (Model.FoundStudent != null)
+    {
+        <div class="alert alert-info mt-4 shadow-sm">
+            <strong>Student Found:</strong><br />
+            ID: @Model.FoundStudent.StudentId <br />
+            Name: @Model.FoundStudent.StudentName <br />
+            Age: @Model.FoundStudent.StudentAge
+        </div>
+    }
+
+</div> <!-- END CONTAINER -->
