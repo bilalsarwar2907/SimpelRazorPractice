@@ -3,11 +3,14 @@ using SimpelRazorPractice.Data;
 using SimpelRazorPractice.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+// Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<AppDbContext>(options =>
-options.UseInMemoryDatabase("PracticeDb"));
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//options.UseInMemoryDatabase("PracticeDb"));
 builder.Services.AddScoped<IStudentCRUD, EFStudentService>();
 builder.Services.AddScoped<IEnrollmentService, EFEnrollmentService>();
 
