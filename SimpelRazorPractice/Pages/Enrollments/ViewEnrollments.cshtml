@@ -1,0 +1,36 @@
+﻿@page
+@model SimpelRazorPractice.Pages.Enrollments.ViewEnrollmentsModel
+
+<div class="container mt-4">
+    <h1 class="mb-4">Enrollments</h1>
+
+    @if (Model.Enrollments != null && Model.Enrollments.Any())
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Course Title</th>
+                    <th>Enrollment Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var e in Model.Enrollments)
+                {
+                    <tr>
+                        <td>@e.Student?.StudentName</td>
+                        <td>@e.Course?.CourseTitle</td>
+                        <td>@e.EnrolledAt.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            No enrollments found.
+        </div>
+    }
+</div>

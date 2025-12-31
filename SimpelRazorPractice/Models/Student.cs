@@ -19,6 +19,6 @@
         }
 
 
-        public ICollection<StudentToCourse> StudentToCourses { get; set; }
+        public ICollection<StudentToCourse> StudentToCourses { get; set; }= new List<StudentToCourse>();
     }
 }

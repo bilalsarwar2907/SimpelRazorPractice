@@ -6,7 +6,6 @@ namespace SimpelRazorPractice.Services
 {
     public interface IEnrollmentService
     {
-        Task EnrollStudentInCourse(int studentId, int courseId);
-
+        Task<bool> EnrollStudentInCourse(int studentId, int courseId);
     }
 }

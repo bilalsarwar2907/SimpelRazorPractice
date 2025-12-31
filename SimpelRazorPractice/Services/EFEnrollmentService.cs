@@ -12,8 +12,19 @@ namespace SimpelRazorPractice.Services
         {
             _context = context;
         }
-        public async Task EnrollStudentInCourse(int studentId, int courseId)
+        public async Task<bool> EnrollStudentInCourse(int studentId, int courseId)
         {
+            var studentExists = await _context.Students.AnyAsync(s => s.StudentId == studentId);
+            var courseExists = await _context.Courses.AnyAsync(c => c.CourseId == courseId);
+            if (!studentExists || !courseExists)
+                return false;
+        
+            var alreadyEnrolled = await _context.StudentToCourses
+                .AnyAsync(sc => sc.StudentId == studentId && sc.CourseId == courseId);
+            if (alreadyEnrolled)
+                return false;
+
+
             var enrollment = new StudentToCourse
             {
                 StudentId = studentId,
@@ -23,6 +34,7 @@ namespace SimpelRazorPractice.Services
 
             _context.StudentToCourses.Add(enrollment);
             await _context.SaveChangesAsync();
+            return true;
         }
     }
 }

@@ -12,6 +12,7 @@
 
     @if (Model.Student != null)
     {
+       
         <!--
             Card wrapper for student details
             - shadow-sm adds a soft shadow
@@ -32,11 +33,18 @@
 
                 <!-- LEFT COLUMN -->
                 <div class="col-md-6 mb-3">
-                    <p class="mb-1"><strong>ID:</strong> @Model.Student.StudentId</p>
-                    <p class="mb-1"><strong>Age:</strong> @Model.Student.StudentAge</p>
-                    <p class="mb-1"><strong>Age:</strong> @Model.Student.StudentEmail</p>
-                </div>
+                    <p><strong>ID:</strong> @Model.Student.StudentId</p>
+                    <p><strong>Age:</strong> @Model.Student.StudentAge</p>
+                    <p><strong>Email:</strong> @Model.Student.StudentEmail</p>
 
+                    <h5 class="mt-3">Enrolled Courses</h5>
+
+                    @foreach (var e in Model.Enrollments)
+                    {
+                        <p>- @e.Course.CourseTitle</p>
+                    }
+                </div>
+                             
                 <!-- RIGHT COLUMN (reserved for future data like courses/teachers) -->
                 <div class="col-md-6 mb-3">
                     <!-- Placeholder for future expansion -->

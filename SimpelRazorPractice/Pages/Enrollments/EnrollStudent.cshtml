@@ -1,0 +1,49 @@
+﻿@page
+@model SimpelRazorPractice.Pages.Enrollments.EnrollStudentModel
+
+<div class="container mt-4">
+    <h1 class="mb-4">Enroll Student in Course</h1>
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert @(Model.IsSuccess ? "alert-success" : "alert-danger")">
+            @Model.Message
+        </div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Select Student</label>
+                        <select asp-for="StudentId"
+                                asp-items="@(new SelectList(Model.Students, "StudentId", "StudentName"))"
+                                class="form-select">
+                            <option value="">-- Choose Student --</option>
+                        </select>
+                        <span asp-validation-for="StudentId" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Select Course</label>
+                        <select asp-for="CourseId"
+                                asp-items="@(new SelectList(Model.Courses, "CourseId", "CourseTitle"))"
+                                class="form-select">
+                            <option value="">-- Choose Course --</option>
+                        </select>
+                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                <a class="btn btn-secondary mt-3"
+                   asp-page="/Enrollments/ViewEnrollments">
+                    View All Enrollments
+                </a>
+                <button type="submit" class="btn btn-primary">Enroll Student</button>
+                <a href="/" class="btn btn-secondary">Back to Home</a>
+               
+            </form>
+        </div>
+    </div>
+</div>

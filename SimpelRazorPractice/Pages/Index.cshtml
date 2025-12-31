@@ -69,6 +69,12 @@
                                    asp-route-StudentId="@student.StudentId">
                                     Details
                                 </a>
+                                <!-- Add this button in the student card actions, alongside Edit/Delete/Details -->
+                                <a class="btn btn-sm btn-success"
+                                   asp-page="/Enrollments/EnrollStudent"
+                                   asp-route-studentId="@student.StudentId">
+                                    Enroll in Course
+                                </a>
                             </div>
                         </li>
                     }
